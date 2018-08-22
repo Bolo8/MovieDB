@@ -1,0 +1,59 @@
+<div class="container text-center">
+    <div class="jumbotron p-2">
+        <h1 class="display-4">MovieDB</h1>
+        <h6>Enter movie title:</h6>
+        <form action="/movie" method="POST" class="mb-2">
+            <input type="text" name="movie" class="form-control">
+            <button type="submit" class="btn">Search</button>
+        </form>
+        <form class="mb-2" action="/movie" method="GET">
+        <button type="submit" class="btn">Movies</button>
+    </form>
+    <form action="/comments" method="GET">
+        <button type="submit" class="btn">Comments</button>
+    </form>
+    </div>
+    
+</div>
+<div class="container">
+    <div class="col-md-4 float-left">
+        <img class="img" src="{{movieInfo.Poster}}" alt="{{movieInfo.Title}} poster">
+    </div>
+    <div class="col-md-8 float-right">
+        <ul class="list-group">
+            <li class="list-group-item">Title: {{movieInfo.Title}}</li>
+            <li class="list-group-item">Year: {{movieInfo.Year}}</li>
+            <li class="list-group-item">Released: {{movieInfo.Released}}</li>
+            <li class="list-group-item">Runtime: {{movieInfo.Runtime}}</li>
+            <li class="list-group-item">Genre: {{movieInfo.Genre}}</li>
+            <li class="list-group-item">Director: {{movieInfo.Director}}</li>
+            <li class="list-group-item">Writer: {{movieInfo.Writer}}</li>
+            <li class="list-group-item">Actors: {{movieInfo.Actors}}</li>
+            <li class="list-group-item">Plot: {{movieInfo.Plot}}</li>
+            <li class="list-group-item">Awards: {{movieInfo.Awards}}</li>
+            <li class="list-group-item">Ratings: <ul>{{#each movieInfo.Ratings}}
+                <li>{{this.Source}}:{{this.Value}}</li>{{/each}}
+            </ul></li>
+            <p></p>
+        </ul>
+    </div>
+</div>
+<div class="container text-center">
+    <form action="/comments" method="POST">
+    <input type="text" name="id" value="{{movieInfo.imdbID}}" style="display:none;">
+    <input type="text" name="message" class="form-control">
+    <button type="submit" class="btn m-2">Comment</button>
+    </form>
+    <hr>
+</div>
+
+<div class="container">
+    <h1 class="display-4">{{movieInfo.Title}} comments:</h1>
+    <ul class="list-group">
+        <script>console.log('H1!')</script>
+        {{#each movieInfo.comments}}
+        <li class="list-group-item">{{this}}</li>
+        {{/each}}
+    </ul>
+</div>
+

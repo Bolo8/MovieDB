@@ -1,0 +1,18 @@
+<div class="container text-center">
+    <div class="jumbotron p-2">
+        <h1 class="display-4">MovieDB</h1>
+        <h6>{{Info}}</h6>
+        <form action="/movie" method="POST" class="mb-2">
+            <input type="text" name="movie" class="form-control">
+            <button type="submit" class="btn">Search</button>
+        </form>
+        <form class="mb-2" action="/movie" method="GET">
+            <button type="submit" class="btn">Movies</button>
+        </form>
+        <form action="/comments" method="GET">
+            <button type="submit" class="btn">Comments</button>
+        </form>
+    </div>
+    
+</div>
+

@@ -1,0 +1,9 @@
+
+<div class="container">
+    <h2 class="display-4">Movies available in our database</h2>
+        <ul class="list-group">
+            {{#each titles}}
+                <li class="list-group-item">{{this.Title}}</li>
+            {{/each}}
+        </ul>
+</div>

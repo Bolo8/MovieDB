@@ -1,0 +1,17 @@
+
+<div class="container">
+    <h2 class="display-4">All comments</h2>
+        <ul class="list-group">
+            {{#each comms}}
+                <li class="list-group-item"><strong>{{this.title}}:</strong>
+                    <ul class="list-group">
+                        {{#each this.comments}}
+                        <li class="list-group-item">
+                            {{this}}
+                        </li>
+                        {{/each}}
+                    </ul>
+                </li>
+            {{/each}}
+        </ul>
+</div>
