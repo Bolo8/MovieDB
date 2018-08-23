@@ -1,0 +1,11 @@
+App hosted: https://fierce-sea-71842.herokuapp.com/
+
+Modules required:
+-cookie-parser
+-debug
+-express
+-get-json
+-handlebars
+-http-errors
+-mongodb
+-morgan
