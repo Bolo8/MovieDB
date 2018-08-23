@@ -3,7 +3,7 @@ var router = express.Router();
 var getJSON = require('get-json');
 var MongoClient = require('mongodb').MongoClient;
 
-var dbUrl = 'mongodb://localhost:27017/movieDb';
+var dbUrl = 'mongodb://user:qwerty123@ds229312.mlab.com:29312/moviedb';
 
 router.get('/', function(req, res, next) {
   res.render('index',{Info:'Enter movie title'});
@@ -16,7 +16,7 @@ router.post('/movie', function(req, res){
   getJSON(url,function(error, response){
     MongoClient.connect(dbUrl, async function(err,db){
       if(err) throw err;
-        myDb = db.db('movieDb');
+        myDb = db.db('moviedb');
       
         //check if title is already in db
         var isInsideDb = false;
@@ -54,7 +54,7 @@ router.get('/movie', function(req,res){
   var movies = [];
     MongoClient.connect(dbUrl,function(err,db){
       if(err) throw err;
-      myDb = db.db('movieDb');
+      myDb = db.db('moviedb');
       var movie = myDb.collection('movies').find();
       movie.forEach(title => {
           movies.push(title);
@@ -70,7 +70,7 @@ router.post('/comments', function(req,res){
   var movieDocs = [];
   MongoClient.connect(dbUrl,async function(err,db){
     if(err) throw err;
-    myDb = db.db('movieDb');
+    myDb = db.db('moviedb');
     myDb.collection('movies').update({imdbID:comment.id},{$push: {comments:comment.message}});
     var movieInfo = myDb.collection('movies').find({imdbID:comment.id});
     await movieInfo.forEach(movieTitle=>{
@@ -84,7 +84,7 @@ router.get('/comments', function(req,res){
     var comments = [];
     MongoClient.connect(dbUrl, async function(err,db){
       if (err) throw err;
-      myDb = db.db('movieDb');
+      myDb = db.db('moviedb');
       var allComments = myDb.collection('movies').find({comments:{$exists:true}});
       await allComments.forEach(comment =>{
         let tempArray = [];
